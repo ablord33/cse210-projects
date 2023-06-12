@@ -1,31 +1,31 @@
 class Reference
 {
-    public string Book { get; }
-    public int Chapter { get; }
-    public int Verse { get; }
-    public int? EndVerse { get; }
+    private readonly string _book;
+    private readonly int _chapter;
+    private readonly int _verse;
+    private readonly int? _endVerse;
 
     public Reference(string book, int chapter, int verse)
     {
-        Book = book;
-        Chapter = chapter;
-        Verse = verse;
-        EndVerse = null;
+        _book = book;
+        _chapter = chapter;
+        _verse = verse;
+        _endVerse = null;
     }
 
     public Reference(string book, int chapter, int verse, int endVerse)
     {
-        Book = book;
-        Chapter = chapter;
-        Verse = verse;
-        EndVerse = endVerse;
+        _book = book;
+        _chapter = chapter;
+        _verse = verse;
+        _endVerse = endVerse;
     }
 
     public override string ToString()
     {
-        if (EndVerse.HasValue)
-            return $"{Book} {Chapter}:{Verse}-{EndVerse}";
+        if (_endVerse.HasValue)
+            return $"{_book} {_chapter}:{_verse}-{_endVerse}";
         else
-            return $"{Book} {Chapter}:{Verse}";
+            return $"{_book} {_chapter}:{_verse}";
     }
 }
