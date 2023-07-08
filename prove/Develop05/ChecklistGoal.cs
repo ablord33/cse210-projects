@@ -1,12 +1,17 @@
 public class ChecklistGoal : Goal
 {
-    private readonly int targetCount;
-    private int completionCount;
+    private int _targetCount;
+    private int _completionCount;
 
-    public ChecklistGoal(string name, int targetCount) : base(name)
+    public ChecklistGoal(string name, int value, int targetCount) : base(name)
     {
-        this.targetCount = targetCount;
-        completionCount = 0;
+        Value = value;
+        _targetCount = targetCount;
+        _completionCount = 0;
+    }
+
+    public ChecklistGoal(string name, int value, bool isComplete) : base(name)
+    {
     }
 
     public override void Complete()
@@ -14,12 +19,17 @@ public class ChecklistGoal : Goal
         if (!IsComplete)
         {
             Value += 50;
-            completionCount++;
-            if (completionCount >= targetCount)
+            _completionCount++;
+            if (_completionCount >= _targetCount)
             {
                 Value += 500;
                 IsComplete = true;
             }
         }
+    }
+
+    public override string Display()
+    {
+        return $"Checklist Goal: {Name}, Value: {Value}";
     }
 }

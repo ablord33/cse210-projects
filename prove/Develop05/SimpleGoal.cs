@@ -1,6 +1,11 @@
 public class SimpleGoal : Goal
 {
-    public SimpleGoal(string name) : base(name)
+    public SimpleGoal(string name, int value) : base(name)
+    {
+        Value = value;
+    }
+
+    public SimpleGoal(string name, int value, bool isComplete) : this(name, value)
     {
     }
 
@@ -11,5 +16,10 @@ public class SimpleGoal : Goal
             Value += 1000;
             IsComplete = true;
         }
+    }
+
+    public override string Display()
+    {
+        return $"Simple Goal: {Name}, Value: {Value}";
     }
 }
