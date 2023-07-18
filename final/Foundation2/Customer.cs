@@ -25,4 +25,14 @@ public class Customer
     {
         return Address.IsInUSA();
     }
+
+    public string GetShippingAddress()
+    {
+        return Address.GetAddress();
+    }
+
+    internal object GetAddress()
+    {
+        throw new NotImplementedException();
+    }
 }
