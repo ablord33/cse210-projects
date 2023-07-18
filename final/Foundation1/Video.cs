@@ -1,27 +1,46 @@
-public class Video
+using System.Collections.Generic;
+
+namespace YouTubeMonitoring
 {
-    public string Title { get; set; }
-    public string Author { get; set; }
-    public int Length { get; set; }
-    private List<Comment> comments;
-
-    public Video()
+    public class Video
     {
-        comments = new List<Comment>();
-    }
+        private string title;
+        private string author;
+        private int length;
+        private List<Comment> comments;
 
-    public int GetNumberOfComments()
-    {
-        return comments.Count;
-    }
+        public Video(string title, string author, int length)
+        {
+            this.title = title;
+            this.author = author;
+            this.length = length;
+            comments = new List<Comment>();
+        }
 
-    public void AddComment(string comment)
-    {
-        comments.Add(new Comment { Text = comment });
-    }
+        public void AddComment(string commenterName, string commentText)
+        {
+            Comment comment = new Comment(commenterName, commentText);
+            comments.Add(comment);
+        }
 
-    public List<Comment> GetComments()
-    {
-        return comments;
+        public int GetNumberOfComments()
+        {
+            return comments.Count;
+        }
+
+        public void DisplayVideoDetails()
+        {
+            Console.WriteLine("Title: " + title);
+            Console.WriteLine("Author: " + author);
+            Console.WriteLine("Length: " + length + " seconds");
+            Console.WriteLine("Number of Comments: " + GetNumberOfComments());
+            Console.WriteLine("Comments:");
+            foreach (Comment comment in comments)
+            {
+                Console.WriteLine("Name: " + comment.CommenterName);
+                Console.WriteLine("Text: " + comment.CommentText);
+                Console.WriteLine();
+            }
+        }
     }
 }
