@@ -11,20 +11,15 @@ namespace YouTubeMonitoring
 
             // Create videos and add comments
             Video video1 = new Video("Video 1", "Author 1", 120);
-            video1.AddComment("User1", "This video is great!");
-            video1.AddComment("User2", "I learned a lot from this video.");
-            video1.AddComment("User3", "Could you please make a follow-up video?");
+            GetCommentsFromUser(video1);
             videos.Add(video1);
 
             Video video2 = new Video("Video 2", "Author 2", 180);
-            video2.AddComment("User4", "Amazing content!");
-            video2.AddComment("User5", "I have a question about the topic.");
-            video2.AddComment("User6", "Thanks for sharing your knowledge.");
+            GetCommentsFromUser(video2);
             videos.Add(video2);
 
             Video video3 = new Video("Video 3", "Author 3", 150);
-            video3.AddComment("User7", "I didn't find the video helpful.");
-            video3.AddComment("User8", "Can you provide more examples?");
+            GetCommentsFromUser(video3);
             videos.Add(video3);
 
             // Display video details
@@ -35,6 +30,29 @@ namespace YouTubeMonitoring
             }
 
             Console.ReadLine();
+        }
+
+        static void GetCommentsFromUser(Video video)
+        {
+            Console.WriteLine("Enter comments for video - " + video.Title);
+            Console.WriteLine("Press Enter key without input to finish entering comments.");
+
+            while (true)
+            {
+                Console.Write("Commenter Name: ");
+                string commenterName = Console.ReadLine();
+
+                if (string.IsNullOrWhiteSpace(commenterName))
+                    break;
+
+                Console.Write("Comment Text: ");
+                string commentText = Console.ReadLine();
+
+                if (string.IsNullOrWhiteSpace(commentText))
+                    break;
+
+                video.AddComment(commenterName, commentText);
+            }
         }
     }
 }

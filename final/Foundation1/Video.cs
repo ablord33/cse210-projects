@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace YouTubeMonitoring
@@ -8,6 +9,10 @@ namespace YouTubeMonitoring
         private string author;
         private int length;
         private List<Comment> comments;
+
+        public string Title { get { return title; } }
+        public string Author { get { return author; } }
+        public int Length { get { return length; } }
 
         public Video(string title, string author, int length)
         {
