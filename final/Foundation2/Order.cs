@@ -1,14 +1,15 @@
-using System;
 using System.Collections.Generic;
+using System.Linq;
 
-class Order
+public class Order
 {
     private List<Product> products;
-    public Customer Customer { get; set; }
+    private Customer customer;
 
-    public Order()
+    public Order(Customer customer)
     {
         products = new List<Product>();
+        this.customer = customer;
     }
 
     public void AddProduct(Product product)
@@ -16,29 +17,25 @@ class Order
         products.Add(product);
     }
 
+    public decimal CalculateTotalCost()
+    {
+        decimal totalCost = products.Sum(product => product.CalculatePrice());
+        totalCost += customer.IsInUSA() ? 5 : 35;
+        return totalCost;
+    }
+
     public string GetPackingLabel()
     {
-        string label = "";
+        string packingLabel = string.Empty;
         foreach (Product product in products)
         {
-            label += $"Name: {product.Name}, Product ID: {product.ProductId}\n";
+            packingLabel += $"Name: {product.Name}, Product ID: {product.ProductId}\n";
         }
-        return label;
+        return packingLabel;
     }
 
     public string GetShippingLabel()
     {
-        return "Name: " + Customer.Name + "\n" + Customer.Address.GetAddressString();
-    }
-
-    public double CalculateTotalPrice()
-    {
-        double totalPrice = 0;
-        foreach (Product product in products)
-        {
-            totalPrice += product.Price * product.Quantity;
-        }
-        totalPrice += Customer.Address.IsInUSA() ? 5 : 35; // Shipping cost
-        return totalPrice;
+        return $"Name: {customer.Name}\n{customer.GetAddress()}";
     }
 }

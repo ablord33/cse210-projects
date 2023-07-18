@@ -1,15 +1,44 @@
-class Product
+public class Product
 {
-    public string Name { get; }
-    public string ProductId { get; }
-    public double Price { get; }
-    public int Quantity { get; }
+    private string name;
+    private string productId;
+    private decimal price;
+    private int quantity;
 
-    public Product(string name, string productId, double price, int quantity)
+    public string Name
+    {
+        get { return name; }
+        set { name = value; }
+    }
+
+    public string ProductId
+    {
+        get { return productId; }
+        set { productId = value; }
+    }
+
+    public decimal Price
+    {
+        get { return price; }
+        set { price = value; }
+    }
+
+    public int Quantity
+    {
+        get { return quantity; }
+        set { quantity = value; }
+    }
+
+    public Product(string name, string productId, decimal price, int quantity)
     {
         Name = name;
         ProductId = productId;
         Price = price;
         Quantity = quantity;
+    }
+
+    public decimal CalculatePrice()
+    {
+        return Price * Quantity;
     }
 }
