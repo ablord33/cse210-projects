@@ -1,0 +1,12 @@
+SimpleGoal
+Run a marathon
+1000
+False
+EternalGoal
+Read the scriptures
+100
+False
+ChecklistGoal
+Attend the temple
+50
+False
